@@ -395,10 +395,17 @@
     }
 
     footer .logo-mark {
-      width: 170px;
-      height: 56px;
+      width: auto;
+      height: auto;
       border-radius: 12px;
       box-shadow: none;
+      overflow: visible;
+    }
+
+    footer .logo-mark img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
     }
 
     @media (max-width: 760px) {
