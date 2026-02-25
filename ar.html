@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>صافي — المناوبات والدخل والصافي</title>
+  <meta name="description" content="صافي يساعد السائقين على تخطيط المناوبات وتتبع الدخل والمصروفات ومعرفة الصافي مع تقديرات الوقود والزيت." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f13;
+      --bg-2: #0f1720;
+      --panel: #121923;
+      --panel-2: #10161f;
+      --text: #e7eef7;
+      --muted: #9fb2c8;
+      --accent: #2ad1a3;
+      --accent-2: #6ce0ff;
+      --warning: #f1c766;
+      --shadow: 0 20px 60px rgba(7, 10, 14, 0.35);
+      --radius: 18px;
+      --radius-lg: 26px;
+      --ring: 0 0 0 2px rgba(108, 224, 255, 0.2);
+      --grid: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+              linear-gradient(180deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", "Space Grotesk", "Segoe UI", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(108, 224, 255, 0.15), transparent 70%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(42, 209, 163, 0.2), transparent 70%),
+                  var(--bg);
+      letter-spacing: 0.1px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: var(--grid);
+      background-size: 90px 90px;
+      opacity: 0.25;
+      pointer-events: none;
+      mask-image: radial-gradient(circle at 30% 20%, rgba(0,0,0,1), rgba(0,0,0,0.2));
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .logo-mark {
+      width: 180px;
+      height: 80px;
+      border-radius: 12px;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 30px rgba(42, 209, 163, 0.3);
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(140deg, var(--accent), var(--accent-2));
+      color: #0a0f14;
+      box-shadow: 0 16px 40px rgba(42, 209, 163, 0.25);
+    }
+
+    .btn.ghost {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: none; box-shadow: var(--ring); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      align-items: center;
+      padding: 40px 0 30px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 14px;
+      background: rgba(108, 224, 255, 0.12);
+      color: var(--accent-2);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: "Tajawal", "Fraunces", serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      margin: 18px 0 16px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-stats {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat strong {
+      font-size: 1.4rem;
+      display: block;
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section {
+      margin-top: 70px;
+    }
+
+    .section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin: 0 0 14px;
+    }
+
+    .section p.lead {
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      padding: 22px;
+      background: var(--panel-2);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .feature h3 {
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 26px;
+      margin-top: 30px;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 16px;
+    }
+
+    .metrics .panel strong {
+      font-size: 1.2rem;
+    }
+
+    .testimonial {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(130deg, rgba(42, 209, 163, 0.12), rgba(108, 224, 255, 0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .price-card {
+      padding: 24px;
+      border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      gap: 14px;
+    }
+
+    .price-card.highlight {
+      background: linear-gradient(160deg, rgba(42, 209, 163, 0.18), rgba(15, 23, 32, 0.7));
+      border-color: rgba(42, 209, 163, 0.4);
+    }
+
+    .price-card .amount {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .faq details {
+      background: var(--panel-2);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .cta {
+      margin-top: 80px;
+      padding: 36px;
+      border-radius: 26px;
+      background: linear-gradient(120deg, rgba(42, 209, 163, 0.18), rgba(108, 224, 255, 0.15));
+      border: 1px solid rgba(255,255,255,0.12);
+      display: grid;
+      gap: 16px;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      font-size: 0.95rem;
+    }
+
+    .footer-left,
+    .footer-right {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-right {
+      text-align: left;
+    }
+
+    footer .logo {
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer .logo-mark {
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    footer .logo-mark img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(241, 199, 102, 0.14);
+      color: var(--warning);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .reveal {
+      animation: floatUp 0.8s ease both;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 20px; }
+      .hero-card { order: -1; }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        text-align: right;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <header class="nav">
+        <div class="logo">
+          <div class="logo-mark">
+            <img src="./assets/LaunchImageWeb.png" alt="شعار صافي" />
+          </div>
+          <div>
+            صافي<br />
+            <span style="color: var(--muted); font-size: 0.8rem;">المناوبات والدخل</span>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#product">المنتج</a>
+          <a href="#workflow">الخطوات</a>
+          <a href="#insights">التقارير</a>
+          <a href="#faq">الأسئلة</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn ghost" href="landing.html">English</a>
+          <a class="btn primary" href="#get-started">ابدأ</a>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="reveal" style="animation-delay: 0.1s;">
+          <span class="eyebrow">صافي (بيتا) للسائقين</span>
+          <h1>خطط مناوباتك، تتبع دخلك، واعرف صافيك الحقيقي.</h1>
+          <p>صافي مصمم لكل من يكسب باستخدام سيارته. ابدأ مناوبة، سجّل الرحلات عند الحاجة، وأنهِ اليوم بملخص واضح للدخل والمصروفات والصافي.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#get-started">ابدأ مجانًا</a>
+            <a class="btn ghost" href="#story">شاهد القصة</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>نقرة واحدة</strong>
+              <span class="pill">لبدء المناوبة</span>
+            </div>
+            <div class="stat">
+              <strong>تقدير تلقائي</strong>
+              <span class="pill">للوقود والزيت</span>
+            </div>
+            <div class="stat">
+              <strong>يوميًا</strong>
+              <span class="pill">تقدم الهدف</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal" style="animation-delay: 0.2s;">
+          <div class="badge">لقطة مناوبة</div>
+          <h3>مناوبة اليوم</h3>
+          <p class="pill">استبدل هذا بلقطة شاشة من التطبيق.</p>
+          <div class="card-grid">
+            <div class="panel">
+              <strong>اليوم</strong>
+              <p class="pill">نظرة عامة على المناوبة</p>
+              <div class="chips">
+                <span class="chip">الدخل 540 ر.س</span>
+                <span class="chip">المصروفات 110 ر.س</span>
+                <span class="chip">الصافي (صافي) 430 ر.س</span>
+              </div>
+            </div>
+            <div class="panel">
+              <strong>تسجيل الرحلات</strong>
+              <p class="pill">اختياري لمزيد من التفاصيل</p>
+              <div class="chips">
+                <span class="chip">رحلات مسجلة 8</span>
+                <span class="chip">معلقة 1</span>
+                <span class="chip">الأعلى: أوبر</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="product" class="section">
+        <h2>كل ما تحتاجه لتشغيل يومك بشكل مربح.</h2>
+        <p class="lead">يجمع صافي المناوبات والرحلات والدخل والمصروفات في مسار واضح يساعدك على التحكم بوقتك ومالك.</p>
+        <div class="feature-grid">
+          <div class="feature">
+            <span class="pill">01</span>
+            <h3>تتبع المناوبات</h3>
+            <p class="pill">ابدأ وأنهِ المناوبة بسرعة. أوقف المحرك أثناء الاستراحات القصيرة لتبقى التكاليف دقيقة.</p>
+          </div>
+          <div class="feature">
+            <span class="pill">02</span>
+            <h3>الدخل والمصروفات</h3>
+            <p class="pill">سجّل الدخل والتكاليف مع تقديرات تلقائية للوقود والزيت حسب سيارتك.</p>
+          </div>
+          <div class="feature">
+            <span class="pill">03</span>
+            <h3>وضوح الصافي</h3>
+            <p class="pill">اعرف صافي كل مناوبة وكل فترة.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="section">
+        <div class="split">
+          <div>
+            <h2>مصمم للسائقين على أي منصة.</h2>
+            <p class="lead">يعمل صافي مع أوبر وكريم وبولت وأي تطبيق تستخدم فيه سيارتك للكسب.</p>
+            <div class="chips">
+              <span class="chip">أضف سيارتك مرة واحدة</span>
+              <span class="chip">حدد الأهداف الشهرية</span>
+              <span class="chip">تتبع المسافة مباشرة</span>
+              <span class="chip">عدّل المناوبات لاحقًا</span>
+            </div>
+          </div>
+          <div class="metrics">
+            <div class="panel">
+              <strong>الخطوة 1</strong>
+              <p class="pill">أدخل تفاصيل سيارتك</p>
+            </div>
+            <div class="panel">
+              <strong>الخطوة 2</strong>
+              <p class="pill">حدد هدف الدخل أو الصافي</p>
+            </div>
+            <div class="panel">
+              <strong>الخطوة 3</strong>
+              <p class="pill">ابدأ مناوبة وابدأ القيادة</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="section">
+        <div class="testimonial">
+          <p style="font-size: 1.1rem;">“صافي خلاني أفهم وين يروح دخلي بكل مناوبة. الآن أشوف الصافي الحقيقي.”</p>
+          <div class="pill">مثال — سائق، الرياض</div>
+        </div>
+      </section>
+
+      <section id="insights" class="section">
+        <h2>تقارير توضّح ما الذي يعمل فعلاً.</h2>
+        <p class="lead">اختر أسبوعًا أو شهرًا أو فترة مخصصة. شاهد الأداء المالي وأفضل مناطق العمل على الخريطة.</p>
+        <div class="pricing">
+          <div class="price-card">
+            <div class="pill">تحليل مالي</div>
+            <div class="amount">الدخل</div>
+            <div class="pill">راقب الدخل والمصروفات والصافي عبر الزمن.</div>
+            <a class="btn ghost" href="#get-started">استعرض التقارير</a>
+          </div>
+          <div class="price-card highlight">
+            <div class="pill">تحليل جغرافي</div>
+            <div class="amount">المناطق الأفضل</div>
+            <div class="pill">اعرف مناطق الالتقاط والتنزيل التي تحقق أفضل عائد.</div>
+            <a class="btn primary" href="#get-started">اعرض الخرائط</a>
+          </div>
+          <div class="price-card">
+            <div class="pill">تفاصيل الرحلات</div>
+            <div class="amount">اختياري</div>
+            <div class="pill">سجّل الرحلات عندما تحتاج مزيدًا من التفاصيل.</div>
+            <a class="btn ghost" href="#get-started">سجّل الرحلات</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <h2>أسئلة شائعة.</h2>
+        <div class="faq">
+          <details>
+            <summary>هل يجب تسجيل كل رحلة؟</summary>
+            <p class="pill">لا. تسجيل الرحلات اختياري ويمكنك تتبع المناوبة كاملة بدونه.</p>
+          </details>
+          <details>
+            <summary>ما المنصات التي يدعمها صافي؟</summary>
+            <p class="pill">أي منصة تستخدم فيها سيارتك للكسب، بما في ذلك أوبر وكريم وبولت.</p>
+          </details>
+          <details>
+            <summary>كيف يتم حساب تكاليف الوقود والزيت؟</summary>
+            <p class="pill">يقدّر صافي التكاليف باستخدام تفاصيل سيارتك والمسافة/الوقت المتتبع.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="get-started" class="cta">
+        <h2>قريبًا على App Store وAndroid</h2>
+        <p class="lead">الإطلاق قريب. تابعنا لمعرفة توفر التطبيق على iOS وAndroid.</p>
+        <div class="chips">
+          <span class="chip">App Store</span>
+          <span class="chip">Google Play</span>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-left">
+          <div class="logo">
+            <div class="logo-mark">
+              <img src="./assets/LaunchImageWeb.png" alt="شعار صافي" />
+            </div>
+          </div>
+          <div class="pill">الرياض، المملكة العربية السعودية</div>
+        </div>
+        <div class="footer-right">
+          <div class="pill">anaportsHQ@gmail.com</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
