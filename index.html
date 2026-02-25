@@ -9,9 +9,9 @@
     (function () {
       var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       var isArabic = lang.startsWith('ar');
-      var isAlreadyArabic = location.pathname.endsWith('landing-ar.html');
+      var isAlreadyArabic = location.pathname.endsWith('ar.html');
       if (isArabic && !isAlreadyArabic) {
-        location.replace('landing-ar.html');
+        location.replace('ar.html');
       }
     })();
   </script>
@@ -474,7 +474,7 @@
           <a href="#faq">FAQ</a>
         </nav>
         <div class="nav-cta">
-          <a class="btn ghost" href="landing-ar.html">العربية</a>
+          <a class="btn ghost" href="ar.html">العربية</a>
           <a class="btn primary" href="#get-started">Get started</a>
         </div>
       </header>
