@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Safi — Shift, Earnings, Net</title>
   <meta name="description" content="Safi helps drivers plan shifts, track earnings and expenses, and see net performance with fuel and oil estimates." />
+  <script>
+    (function () {
+      var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      var isArabic = lang.startsWith('ar');
+      var isAlreadyArabic = location.pathname.endsWith('landing-ar.html');
+      if (isArabic && !isAlreadyArabic) {
+        location.replace('landing-ar.html');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
@@ -403,7 +413,7 @@
     }
 
     footer .logo-mark img {
-      height: auto;
+      height: 48px;
       width: auto;
       object-fit: contain;
     }
