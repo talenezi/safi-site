@@ -221,10 +221,13 @@
       border-radius: var(--radius);
       padding: 12px;
       border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: center;
     }
 
     .screenshot-frame img {
       width: 100%;
+      max-width: 320px;
       height: auto;
       border-radius: 12px;
     }
@@ -521,7 +524,7 @@
         <div class="hero-card reveal" style="animation-delay: 0.2s;">
           <div class="badge">Weekly Target</div>
           <h3>Week target tracking</h3>
-          <p class="pill">See progress, remaining hours, and net target at a glance.</p>
+          <p class="pill">Track daily, weekly, and monthly progress towards your targets.</p>
           <div class="screenshot-frame">
             <img src="./assets/week_target_en.png" alt="Week target tracking screenshot" />
           </div>
