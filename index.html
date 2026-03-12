@@ -1,13 +1,23 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>صافي — المناوبات والدخل والصافي</title>
-  <meta name="description" content="صافي يساعد السائقين على تخطيط المناوبات وتتبع الدخل والمصروفات ومعرفة الصافي مع تقديرات الوقود والزيت." />
+  <title>Safi — Shift, Earnings, Net</title>
+  <meta name="description" content="Safi helps drivers plan shifts, track earnings and expenses, and see net performance with fuel and oil estimates." />
+  <script>
+    (function () {
+      var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      var isArabic = lang.startsWith('ar');
+      var isAlreadyArabic = location.pathname.endsWith('ar.html');
+      if (isArabic && !isAlreadyArabic) {
+        location.replace('ar.html');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0b0f13;
@@ -31,7 +41,7 @@
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: "Tajawal", "Space Grotesk", "Segoe UI", sans-serif;
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
       color: var(--text);
       background: radial-gradient(1200px 600px at 10% -10%, rgba(108, 224, 255, 0.15), transparent 70%),
                   radial-gradient(900px 500px at 90% 10%, rgba(42, 209, 163, 0.2), transparent 70%),
@@ -81,23 +91,22 @@
       letter-spacing: 0.4px;
     }
 
-    .logo-mark {
-      width: 180px;
-      height: 80px;
-      border-radius: 12px;
-      background: transparent;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 10px 30px rgba(42, 209, 163, 0.3);
-      overflow: hidden;
-    }
+.logo-mark {
+  width: 200px;
+  height: 100px;
+  border-radius: 12px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
 
-    .logo-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 
     .nav-links {
       display: flex;
@@ -160,16 +169,16 @@
     }
 
     h1 {
-      font-family: "Tajawal", "Fraunces", serif;
-      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.6rem, 4vw, 4rem);
       margin: 18px 0 16px;
-      line-height: 1.1;
+      line-height: 1.05;
     }
 
     .hero p {
       color: var(--muted);
       font-size: 1.05rem;
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
     .hero-actions {
@@ -252,7 +261,7 @@
     .section p.lead {
       color: var(--muted);
       max-width: 640px;
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
     .feature-grid {
@@ -363,6 +372,27 @@
       gap: 16px;
     }
 
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .input-row input {
+      flex: 1 1 220px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(9, 13, 18, 0.6);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .input-row input:focus-visible {
+      outline: none;
+      box-shadow: var(--ring);
+    }
+
     footer {
       margin-top: 60px;
       color: var(--muted);
@@ -380,7 +410,7 @@
     }
 
     .footer-right {
-      text-align: left;
+      text-align: right;
     }
 
     footer .logo {
@@ -389,7 +419,7 @@
     }
 
     footer .logo-mark {
-      width: auto;
+      width: 100px;
       height: auto;
       border-radius: 12px;
       box-shadow: none;
@@ -400,6 +430,17 @@
       height: 48px;
       width: auto;
       object-fit: contain;
+    }
+
+    @media (max-width: 760px) {
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        text-align: left;
+      }
     }
 
     .badge {
@@ -427,14 +468,6 @@
       .nav-links { display: none; }
       .hero { padding-top: 20px; }
       .hero-card { order: -1; }
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-right {
-        text-align: right;
-      }
     }
   </style>
 </head>
@@ -445,78 +478,74 @@
       <header class="nav">
         <div class="logo">
           <div class="logo-mark">
-            <img src="./assets/LaunchImageWeb.png" alt="شعار صافي" />
-          </div>
-          <div>
-            صافي<br />
-            <span style="color: var(--muted); font-size: 0.8rem;">المناوبات والدخل</span>
+            <img src="./assets/LaunchImageWeb.png" alt="Safi logo" />
           </div>
         </div>
         <nav class="nav-links">
-          <a href="#product">المنتج</a>
-          <a href="#workflow">الخطوات</a>
-          <a href="#insights">التقارير</a>
-          <a href="#faq">الأسئلة</a>
+          <a href="#product">Product</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#insights">Insights</a>
+          <a href="#faq">FAQ</a>
         </nav>
         <div class="nav-cta">
-          <a class="btn ghost" href="https://safi.anaports.com">English</a>
-          <a class="btn primary" href="#get-started">ابدأ</a>
+          <a class="btn ghost" href="ar.html">العربية</a>
+          <a class="btn primary" href="#get-started">Get started</a>
         </div>
       </header>
 
       <section class="hero">
         <div class="reveal" style="animation-delay: 0.1s;">
-          <span class="eyebrow">صافي (بيتا) للسائقين</span>
-          <h1>خطط مناوباتك، تتبع دخلك، واعرف صافيك الحقيقي.</h1>
-          <p>صافي مصمم لكل من يكسب باستخدام سيارته. ابدأ مناوبة، سجّل الرحلات عند الحاجة، وأنهِ اليوم بملخص واضح للدخل والمصروفات والصافي.</p>
+          <span class="eyebrow">Safi (beta) for drivers</span>
+          <h1>Plan shifts, track earnings, and see your true net.</h1>
+          <p>Safi is built for anyone who earns with their car. Start a shift, log trips if you want detail, and finish with a clear summary of earnings, expenses, and net.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#get-started">ابدأ مجانًا</a>
-            <a class="btn ghost" href="#story">شاهد القصة</a>
+            <a class="btn primary" href="#get-started">Start free trial</a>
+            <a class="btn ghost" href="#story">Watch story</a>
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <strong>نقرة واحدة</strong>
-              <span class="pill">لبدء المناوبة</span>
+              <strong>1 tap</strong>
+              <span class="pill">Start a shift</span>
             </div>
             <div class="stat">
-              <strong>تقدير تلقائي</strong>
-              <span class="pill">للوقود والزيت</span>
+              <strong>Auto</strong>
+              <span class="pill">Fuel + oil estimates</span>
             </div>
             <div class="stat">
-              <strong>يوميًا</strong>
-              <span class="pill">تقدم الهدف</span>
+              <strong>Daily</strong>
+              <span class="pill">Target progress</span>
             </div>
           </div>
         </div>
 
         <div class="hero-card reveal" style="animation-delay: 0.2s;">
-          <div class="badge">الهدف الأسبوعي</div>
-          <h3>تتبع الهدف الأسبوعي</h3>
-          <p class="pill">شاهد التقدم، الساعات المتبقية، وصافي الهدف بسرعة.</p>
+          <div class="badge">Weekly Target</div>
+          <h3>Week target tracking</h3>
+          <p class="pill">See progress, remaining hours, and net target at a glance.</p>
           <div class="screenshot-frame">
-            <img src="./assets/week_target_ar.png" alt="لقطة شاشة لتتبع الهدف الأسبوعي" />
+            <img src="./assets/week_target_en.png" alt="Week target tracking screenshot" />
           </div>
         </div>
       </section>
 
       <section id="product" class="section">
-        <h2>كل ما تحتاجه لتشغيل يومك بشكل مربح.</h2>
-        <p class="lead">يجمع صافي المناوبات والرحلات والدخل والمصروفات في مسار واضح يساعدك على التحكم بوقتك ومالك.</p>
+        <h2>Everything you need to run a profitable driving day.</h2>
+        <p class="lead">Safi brings shifts, trips, earnings, and expenses into one clear flow so you can stay in control of your time and money.</p>
         <div class="feature-grid">
           <div class="feature">
             <span class="pill">01</span>
-            <h3>تتبع المناوبات</h3>
-            <p class="pill">ابدأ وأنهِ المناوبة بسرعة. أوقف المحرك أثناء الاستراحات القصيرة لتبقى التكاليف دقيقة.</p>
+            <h3>Shift tracking</h3>
+            <p class="pill">Start and end shifts in seconds. Pause engine tracking during short breaks to keep costs accurate.</p>
           </div>
           <div class="feature">
             <span class="pill">02</span>
-            <h3>الدخل والمصروفات</h3>
-            <p class="pill">سجّل الدخل والتكاليف مع تقديرات تلقائية للوقود والزيت حسب سيارتك.</p>
+            <h3>Earnings + expenses</h3>
+            <p class="pill">Log income and costs, with automatic fuel and oil estimates based on your vehicle.</p>
           </div>
           <div class="feature">
             <span class="pill">03</span>
-            <h3>وضوح الصافي</h3>
-            <p class="pill">اعرف صافي كل مناوبة وكل فترة.</p>
+            <h3>Net clarity</h3>
+            <p class="pill">See your Safi net for each shift, day, and report period.</p>
           </div>
         </div>
       </section>
@@ -524,27 +553,27 @@
       <section id="workflow" class="section">
         <div class="split">
           <div>
-            <h2>مصمم للسائقين على أي منصة.</h2>
-            <p class="lead">يعمل صافي مع أوبر وكريم وبولت وأي تطبيق تستخدم فيه سيارتك للكسب.</p>
+            <h2>Designed for drivers on any platform.</h2>
+            <p class="lead">Safi works with Uber, Careem, Bolt, and any app where you use your car to earn.</p>
             <div class="chips">
-              <span class="chip">أضف سيارتك مرة واحدة</span>
-              <span class="chip">حدد الأهداف الشهرية</span>
-              <span class="chip">تتبع المسافة مباشرة</span>
-              <span class="chip">عدّل المناوبات لاحقًا</span>
+              <span class="chip">Add your car once</span>
+              <span class="chip">Set monthly targets</span>
+              <span class="chip">Track distance live</span>
+              <span class="chip">Edit shifts later</span>
             </div>
           </div>
           <div class="metrics">
             <div class="panel">
-              <strong>الخطوة 1</strong>
-              <p class="pill">أدخل تفاصيل سيارتك</p>
+              <strong>Step 1</strong>
+              <p class="pill">Add your vehicle details</p>
             </div>
             <div class="panel">
-              <strong>الخطوة 2</strong>
-              <p class="pill">حدد هدف الدخل أو الصافي</p>
+              <strong>Step 2</strong>
+              <p class="pill">Set earnings or net targets</p>
             </div>
             <div class="panel">
-              <strong>الخطوة 3</strong>
-              <p class="pill">ابدأ مناوبة وابدأ القيادة</p>
+              <strong>Step 3</strong>
+              <p class="pill">Start a shift and drive</p>
             </div>
           </div>
         </div>
@@ -552,57 +581,57 @@
 
       <section id="story" class="section">
         <div class="testimonial">
-          <p style="font-size: 1.1rem;">“صافي خلاني أفهم وين يروح دخلي بكل مناوبة. الآن أشوف الصافي الحقيقي.”</p>
-          <div class="pill">مثال — سائق، الرياض</div>
+          <p style="font-size: 1.1rem;">“Safi made it obvious where my money goes every shift. I finally see my net, not just fares.”</p>
+          <div class="pill">Placeholder — Driver, Riyadh</div>
         </div>
       </section>
 
       <section id="insights" class="section">
-        <h2>تقارير توضّح ما الذي يعمل فعلاً.</h2>
-        <p class="lead">اختر أسبوعًا أو شهرًا أو فترة مخصصة. شاهد الأداء المالي وأفضل مناطق العمل على الخريطة.</p>
+        <h2>Reports that show what’s really working.</h2>
+        <p class="lead">Choose a week, month, or custom period. See financial performance and where you earn best on the map.</p>
         <div class="pricing">
           <div class="price-card">
-            <div class="pill">تحليل مالي</div>
-            <div class="amount">الدخل</div>
-            <div class="pill">راقب الدخل والمصروفات والصافي عبر الزمن.</div>
-            <a class="btn ghost" href="#get-started">استعرض التقارير</a>
+            <div class="pill">Financial analysis</div>
+            <div class="amount">Earnings</div>
+            <div class="pill">Track income, expenses, and net over time.</div>
+            <a class="btn ghost" href="#get-started">Explore reports</a>
           </div>
           <div class="price-card highlight">
-            <div class="pill">تحليل جغرافي</div>
-            <div class="amount">المناطق الأفضل</div>
-            <div class="pill">اعرف مناطق الالتقاط والتنزيل التي تحقق أفضل عائد.</div>
-            <a class="btn primary" href="#get-started">اعرض الخرائط</a>
+            <div class="pill">Geospatial analysis</div>
+            <div class="amount">Hotspots</div>
+            <div class="pill">Visualize pickup and dropoff areas.</div>
+            <a class="btn primary" href="#get-started">See maps</a>
           </div>
           <div class="price-card">
-            <div class="pill">تفاصيل الرحلات</div>
-            <div class="amount">اختياري</div>
-            <div class="pill">سجّل الرحلات عندما تحتاج مزيدًا من التفاصيل.</div>
-            <a class="btn ghost" href="#get-started">سجّل الرحلات</a>
+            <div class="pill">Trip detail</div>
+            <div class="amount">Optional</div>
+            <div class="pill">Log trips when you want extra granularity.</div>
+            <a class="btn ghost" href="#get-started">Log trips</a>
           </div>
         </div>
       </section>
 
       <section id="faq" class="section">
-        <h2>أسئلة شائعة.</h2>
+        <h2>Questions you might be asked.</h2>
         <div class="faq">
           <details>
-            <summary>هل يجب تسجيل كل رحلة؟</summary>
-            <p class="pill">لا. تسجيل الرحلات اختياري ويمكنك تتبع المناوبة كاملة بدونه.</p>
+            <summary>Do I have to log every trip?</summary>
+            <p class="pill">No. Trip logging is optional. You can still track a full shift without it.</p>
           </details>
           <details>
-            <summary>ما المنصات التي يدعمها صافي؟</summary>
-            <p class="pill">أي منصة تستخدم فيها سيارتك للكسب، بما في ذلك أوبر وكريم وبولت.</p>
+            <summary>What platforms does Safi support?</summary>
+            <p class="pill">Any platform where you use your car to earn, including Uber, Careem, and Bolt.</p>
           </details>
           <details>
-            <summary>كيف يتم حساب تكاليف الوقود والزيت؟</summary>
-            <p class="pill">يقدّر صافي التكاليف باستخدام تفاصيل سيارتك والمسافة/الوقت المتتبع.</p>
+            <summary>How are fuel and oil costs calculated?</summary>
+            <p class="pill">Safi estimates costs using your vehicle details and tracked distance/time.</p>
           </details>
         </div>
       </section>
 
       <section id="get-started" class="cta">
-        <h2>قريبًا على App Store وAndroid</h2>
-        <p class="lead">الإطلاق قريب. تابعنا لمعرفة توفر التطبيق على iOS وAndroid.</p>
+        <h2>Soon on App Store and Android</h2>
+        <p class="lead">We are launching soon. Stay tuned for iOS and Android availability.</p>
         <div class="chips">
           <span class="chip">App Store</span>
           <span class="chip">Google Play</span>
@@ -613,10 +642,10 @@
         <div class="footer-left">
           <div class="logo">
             <div class="logo-mark">
-              <img src="./assets/LaunchImageWeb.png" alt="شعار صافي" />
+              <img src="./assets/LaunchImageWeb.png" alt="Safi logo" />
             </div>
           </div>
-          <div class="pill">الرياض، المملكة العربية السعودية</div>
+          <div class="pill">Riyadh, Saudi Arabia</div>
         </div>
         <div class="footer-right">
           <div class="pill">anaportsHQ@gmail.com</div>
