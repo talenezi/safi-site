@@ -206,6 +206,20 @@
       box-shadow: var(--shadow);
     }
 
+    .screenshot-frame {
+      margin-top: 18px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
     .card-grid {
       display: grid;
       gap: 18px;
@@ -476,28 +490,11 @@
         </div>
 
         <div class="hero-card reveal" style="animation-delay: 0.2s;">
-          <div class="badge">لقطة مناوبة</div>
-          <h3>مناوبة اليوم</h3>
-          <p class="pill">استبدل هذا بلقطة شاشة من التطبيق.</p>
-          <div class="card-grid">
-            <div class="panel">
-              <strong>اليوم</strong>
-              <p class="pill">نظرة عامة على المناوبة</p>
-              <div class="chips">
-                <span class="chip">الدخل 540 ر.س</span>
-                <span class="chip">المصروفات 110 ر.س</span>
-                <span class="chip">الصافي (صافي) 430 ر.س</span>
-              </div>
-            </div>
-            <div class="panel">
-              <strong>تسجيل الرحلات</strong>
-              <p class="pill">اختياري لمزيد من التفاصيل</p>
-              <div class="chips">
-                <span class="chip">رحلات مسجلة 8</span>
-                <span class="chip">معلقة 1</span>
-                <span class="chip">الأعلى: أوبر</span>
-              </div>
-            </div>
+          <div class="badge">الهدف الأسبوعي</div>
+          <h3>تتبع الهدف الأسبوعي</h3>
+          <p class="pill">شاهد التقدم، الساعات المتبقية، وصافي الهدف بسرعة.</p>
+          <div class="screenshot-frame">
+            <img src="./assets/week_target_ar.png" alt="لقطة شاشة لتتبع الهدف الأسبوعي" />
           </div>
         </div>
       </section>
