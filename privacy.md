@@ -347,7 +347,5 @@ For material changes, we may provide additional notice in the app or through ano
 
 For privacy questions, rights requests, or complaints:
 
-* Email: **[add privacy contact email]**
+* Email: **anaportsHQ@gmail.com**
 * WhatsApp support: **+966 55 600 8837**
-* Controller/Entity: **[add legal entity name]**
-* Address: **[add legal address if required]**
