@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | Safi</title>
+  <meta name="description" content="Safi privacy policy covering data collection, use, retention, sharing, security, and user rights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f13;
+      --bg-2: #0f1720;
+      --panel: #121923;
+      --text: #e7eef7;
+      --muted: #9fb2c8;
+      --accent: #2ad1a3;
+      --accent-2: #6ce0ff;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 60px rgba(7, 10, 14, 0.35);
+      --radius: 22px;
+      --grid: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+              linear-gradient(180deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(108, 224, 255, 0.15), transparent 70%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(42, 209, 163, 0.2), transparent 70%),
+                  var(--bg);
+      letter-spacing: 0.1px;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: var(--grid);
+      background-size: 90px 90px;
+      opacity: 0.25;
+      pointer-events: none;
+      mask-image: radial-gradient(circle at 30% 20%, rgba(0,0,0,1), rgba(0,0,0,0.2));
+    }
+
+    .container {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 70px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .logo-mark {
+      width: 100px;
+      border-radius: 12px;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero {
+      padding: 46px 0 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 14px;
+      background: rgba(108, 224, 255, 0.12);
+      color: var(--accent-2);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      margin: 18px 0 16px;
+      line-height: 1.05;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .policy {
+      margin-top: 24px;
+      padding: clamp(22px, 4vw, 42px);
+      background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .policy h1 { display: none; }
+    .policy h2 {
+      margin: 34px 0 12px;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+    }
+    .policy h3 {
+      margin: 26px 0 10px;
+      font-size: 1.1rem;
+      color: var(--accent-2);
+    }
+    .policy p,
+    .policy li {
+      color: var(--muted);
+      line-height: 1.72;
+    }
+    .policy strong { color: var(--text); }
+    .policy ul { padding-left: 24px; }
+    .policy table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      min-width: 680px;
+    }
+    .policy th,
+    .policy td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-align: left;
+      vertical-align: top;
+    }
+    .policy th {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    footer {
+      margin-top: 44px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    footer a { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; }
+      .policy table { min-width: 560px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="grid-overlay"></div>
+    <div class="container">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="logo-mark" href="/" aria-label="Safi home">
+          <img src="./assets/LaunchImageWeb.png" alt="Safi logo" />
+        </a>
+        <a class="btn" href="/">Back to home</a>
+      </nav>
+
+      <header class="hero">
+        <span class="eyebrow">Privacy</span>
+        <h1>Privacy Policy</h1>
+        <p class="lead">How Safi collects, uses, stores, shares, transfers, retains, and protects personal data.</p>
+      </header>
+
+      <main class="policy">
+<h1>Safi Privacy Policy</h1>
+<p><strong>Last updated:</strong> April 28, 2026</p>
+<p>This Privacy Policy explains how Safi collects, uses, stores, shares, transfers, retains, and protects personal data when you use the Safi mobile application and related services.</p>
+<h2>1. Our Privacy Approach</h2>
+<p>Safi is built around <strong>data minimization</strong>.</p>
+<p>We collect only the data that is necessary to deliver the app’s core services, including shift tracking, trip logging, earnings and expense reporting, vehicle cost estimation, support, notifications, security, and service reliability.</p>
+<p>Examples:</p>
+<ul>
+<li>We collect location samples during active tracking sessions to calculate shift distance and route-based insights.</li>
+<li>We collect trip fares, income, and expenses to calculate net results and reports.</li>
+<li>We collect a push notification token only to send app-related notifications.</li>
+</ul>
+<p>We do not sell personal data.</p>
+<p>We do not use your precise location, trip history, earnings, or expenses for third-party advertising or cross-app tracking.</p>
+<h2>2. Data We Collect</h2>
+<h3>A. Account and profile data</h3>
+<p>We may collect:</p>
+<ul>
+<li>Email address and authentication data, managed through Supabase Auth</li>
+<li>Required profile details for account setup, including full name and date of birth</li>
+<li>Additional profile details, such as phone number, gender, or nationality, may be collected if you choose to provide them or if they are needed for a specific app feature, support purpose, eligibility, localization, or legal/compliance reason.</li>
+<li>Country code derived from your device locale and stored in your profile for localization and consistency</li>
+<li>Referral code, if provided</li>
+</ul>
+<p>Purpose:</p>
+<ul>
+<li>Create and secure your account</li>
+<li>Personalize your profile and support interactions</li>
+<li>Communicate with you about your account or support requests</li>
+<li>Protect the service from unauthorized access or abuse</li>
+<li>Support localization, eligibility, compliance, or feature-specific needs where applicable</li>
+</ul>
+<p>Some account data is required to create and use a Safi account, including date of birth for minimum-age eligibility checks.</p>
+<h3>B. Operational driver data</h3>
+<p>We may collect:</p>
+<ul>
+<li>Vehicle records, including make, model, year, fuel settings, oil settings, and related fields</li>
+<li>Shift records, including start time, end time, duration, distance, and shift status</li>
+<li>Trip records, including platform, fare, timestamps, distance, and optional pickup/dropoff location fields</li>
+<li>Transactions, including income entries, expense entries, source labels, categories, notes, and dates</li>
+<li>Targets and planning settings</li>
+</ul>
+<p>Purpose:</p>
+<ul>
+<li>Run Safi’s core features</li>
+<li>Track shifts, trips, income, and expenses</li>
+<li>Estimate fuel, oil, and other vehicle-related costs</li>
+<li>Generate period-based and shift-based reports (for example week, month, or custom range)</li>
+<li>Help you understand your net results from driving work</li>
+</ul>
+<p>If you enter shift, trip, income, expense, or vehicle data manually, Safi stores the information you provide so it can generate reports and summaries.</p>
+<h3>C. Location and route data</h3>
+<p>We may collect:</p>
+<ul>
+<li>GPS coordinates</li>
+<li>Route markers</li>
+<li>Distance and movement-related data</li>
+<li>Pickup/dropoff location fields when you enter or save them</li>
+</ul>
+<p>Purpose:</p>
+<ul>
+<li>Calculate shift distance</li>
+<li>Calculate runtime metrics</li>
+<li>Support route-based views</li>
+<li>Improve shift and trip analytics</li>
+<li>Estimate driving-related costs more accurately</li>
+</ul>
+<p>Safi collects location data only when you start a shift or use a tracking feature that requires location access.</p>
+<p>If you enable live shift tracking, Safi may collect location data while the app is in the background to calculate shift distance, duration, route markers, and related cost estimates.</p>
+<p>Background location collection stops when the tracking session ends.</p>
+<p>If you do not grant location permission, live shift tracking and route-based distance calculation may not work. However, you may still be able to enter shift or trip information manually where supported.</p>
+<h3>D. Device and technical data</h3>
+<p>We may collect:</p>
+<ul>
+<li>Push notification token</li>
+<li>Device platform type</li>
+<li>App language</li>
+<li>Basic operational logs</li>
+<li>Error context, diagnostics, and performance data needed for reliability and security</li>
+</ul>
+<p>Purpose:</p>
+<ul>
+<li>Deliver push notifications</li>
+<li>Maintain service quality</li>
+<li>Detect and fix errors</li>
+<li>Protect the app from abuse, fraud, or unauthorized access</li>
+<li>Improve app reliability and performance</li>
+</ul>
+<h3>E. Support and communications data</h3>
+<p>We may collect:</p>
+<ul>
+<li>Support threads and messages you send in-app</li>
+<li>Support request status</li>
+<li>Announcement read/archive state</li>
+<li>Replies, suggestions, complaints, or help messages you submit</li>
+</ul>
+<p>Purpose:</p>
+<ul>
+<li>Provide customer support</li>
+<li>Respond to questions or complaints</li>
+<li>Send in-app communications</li>
+<li>Track whether important announcements were read or archived</li>
+<li>Maintain records needed to resolve support issues</li>
+</ul>
+<h2>3. App Permissions</h2>
+<p>Safi may request access to:</p>
+<ul>
+<li><strong>Location:</strong> to calculate shift distance, route markers, trip-related metrics, and driving-related cost estimates.</li>
+<li><strong>Background location (on supported platforms):</strong> to continue calculating distance and route data during an active shift when the app is not open.</li>
+<li><strong>Notifications:</strong> to send shift reminders, trip/session alerts, support updates, account messages, and other app-related notifications.</li>
+</ul>
+<p>Safi does not access permissions unless they are needed for app features and allowed by your device settings.</p>
+<p>You can manage app permissions through your device settings.</p>
+<h2>4. Data We Do Not Collect for Current Services</h2>
+<p>For the current Safi app flow:</p>
+<ul>
+<li>We do not process in-app card payments.</li>
+<li>We do not store full credit card or debit card details.</li>
+<li>We do not need VAT billing data to provide current core features.</li>
+<li>We do not sell personal data.</li>
+<li>We do not use personal data for third-party advertising or cross-app tracking.</li>
+</ul>
+<p>If Safi later offers subscriptions or in-app purchases, payment processing will be handled by Apple, Google, or another payment provider. Safi will not receive or store your full card details.</p>
+<h2>5. How We Use Data</h2>
+<p>We use personal data to:</p>
+<ul>
+<li>Provide and operate Safi features</li>
+<li>Authenticate users and protect account security</li>
+<li>Track shifts, trips, income, expenses, and vehicle-related costs</li>
+<li>Generate summaries, reports, insights, and cost estimates</li>
+<li>Send app-related notifications</li>
+<li>Respond to support requests</li>
+<li>Maintain app reliability and performance</li>
+<li>Detect errors, abuse, fraud, or unauthorized access</li>
+<li>Enforce product safety, anti-abuse, and platform integrity</li>
+<li>Maintain operational records related to account deletion or security events</li>
+<li>Meet legal obligations when applicable</li>
+</ul>
+<h2>6. Required and Optional Data</h2>
+<p>Some data is required to provide Safi’s core features. This includes account data (including date of birth), vehicle data, shift records, trip records, transaction records, and technical data needed for security and reliability.</p>
+<p>Some data is optional. This may include optional profile fields other than date of birth, notes, support messages, optional pickup/dropoff fields, and some planning settings.</p>
+<p>If you choose not to provide required data, some Safi features may not work.</p>
+<p>If you choose not to grant location permission, Safi may not be able to calculate live shift distance or route-based metrics. You may still be able to manually enter shift or trip information where supported.</p>
+<p>If you choose not to allow notifications, you may not receive shift reminders, trip/session alerts, support updates, or other app-related notifications.</p>
+<h2>7. Legal Basis for Processing</h2>
+<p>Depending on applicable law, Safi processes personal data based on your consent where required, or where processing is necessary to provide Safi’s services, protect account and service security, comply with legal obligations, respond to your requests, or achieve other lawful purposes permitted by applicable law.</p>
+<p>Where processing is based on consent, you may withdraw consent through app settings, device settings, or by contacting us, depending on the type of data or permission.</p>
+<p>Withdrawing consent may affect features that depend on the related data or permission. For example, disabling location permission may prevent live shift tracking from working properly.</p>
+<h2>8. Sharing and Processors</h2>
+<p>We share data only with service providers needed to operate Safi.</p>
+<p>These may include:</p>
+<ul>
+<li><strong>Supabase:</strong> authentication, database, backend services, and related infrastructure</li>
+<li><strong>Firebase Cloud Messaging:</strong> push notifications</li>
+<li><strong>Map, tile, or hosting providers configured by Safi:</strong> map rendering, route display, or delivery of map tiles</li>
+<li><strong>Email or communication service providers:</strong> account emails, support messages, or app-related communications, if used</li>
+</ul>
+<p>We require service providers to use data only for service delivery, security, reliability, and legal compliance.</p>
+<p>We do not sell personal data to advertisers.</p>
+<p>We do not share your precise location, trip history, earnings, or expenses with third parties for third-party advertising or cross-app tracking.</p>
+<h2>9. International Data Transfers</h2>
+<p>Your data may be processed outside Saudi Arabia or outside your country of residence by Safi’s infrastructure providers and service providers.</p>
+<p>When personal data is transferred or processed outside Saudi Arabia or your country of residence, Safi takes steps designed to protect the data in accordance with applicable requirements.</p>
+<p>These steps may include:</p>
+<ul>
+<li>Using reputable infrastructure and service providers</li>
+<li>Applying contractual safeguards where required</li>
+<li>Using encrypted transport</li>
+<li>Applying access controls</li>
+<li>Limiting access to personal data based on operational need</li>
+<li>Using security restrictions and monitoring where appropriate</li>
+</ul>
+<h2>10. Retention</h2>
+<p>We retain personal data only as long as needed to:</p>
+<ul>
+<li>Provide Safi services</li>
+<li>Maintain account security</li>
+<li>Support app reliability</li>
+<li>Resolve support requests</li>
+<li>Prevent abuse, fraud, or unauthorized access</li>
+<li>Maintain operational records related to deletion, troubleshooting, or security</li>
+<li>Comply with legal obligations</li>
+</ul>
+<p>Retention periods may vary depending on the data type, legal requirements, and operational needs.</p>
+<p>Typical retention approach:</p>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Typical retention</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Account and authentication data</td>
+<td>Until account deletion, unless limited retention is required for security, legal, or operational reasons</td>
+</tr>
+<tr>
+<td>Profile data</td>
+<td>Until you update it, or until account deletion</td>
+</tr>
+<tr>
+<td>Vehicle data</td>
+<td>Until you archive/remove the vehicle record where supported, or until account deletion</td>
+</tr>
+<tr>
+<td>Shift, trip, income, expense, and transaction data</td>
+<td>Until you edit/archive/remove the relevant records where supported, or until account deletion</td>
+</tr>
+<tr>
+<td>Location and route data linked to shifts or trips</td>
+<td>Retained with related operational records unless explicitly removed by the feature, or until account deletion</td>
+</tr>
+<tr>
+<td>Support messages</td>
+<td>Until account deletion, or as long as needed to resolve support, security, or legal issues</td>
+</tr>
+<tr>
+<td>Push notification token</td>
+<td>Until token replacement/reassignment or account deletion; it may persist after logout</td>
+</tr>
+<tr>
+<td>Operational logs, diagnostics, and error context</td>
+<td>As long as needed for reliability, security, troubleshooting, and abuse prevention</td>
+</tr>
+<tr>
+<td>Deletion audit record</td>
+<td>Target retention up to 90 days</td>
+</tr>
+<tr>
+<td>Encrypted infrastructure backups</td>
+<td>Typically up to 7 days, depending on infrastructure configuration</td>
+</tr>
+</tbody></table>
+<p>When personal data is no longer needed, Safi deletes it, anonymizes it, or retains it only where required or permitted for security, operational, legal, or backup purposes.</p>
+<h2>11. Account Deletion Retention Behavior</h2>
+<p>You can request account deletion directly in the app from:</p>
+<p><strong>More → Profile → Delete account</strong></p>
+<p>When you request account deletion in-app:</p>
+<ul>
+<li>User-linked app records used by current Safi services are deleted from active production systems.</li>
+<li>The authentication account is deleted.</li>
+<li>A minimal technical deletion audit record is kept without raw email, phone number, or name.</li>
+</ul>
+<p>The deletion audit record may include:</p>
+<ul>
+<li>Deletion case ID</li>
+<li>Request timestamp</li>
+<li>Completion timestamp</li>
+<li>Status</li>
+<li>Error count, if any</li>
+<li>Hashed internal user reference</li>
+<li>HMAC-hashed normalized email reference (no raw email stored)</li>
+</ul>
+<p>Deletion audit retention:</p>
+<ul>
+<li>Target retention is up to <strong>90 days</strong> for operational verification, security, troubleshooting, and abuse prevention.</li>
+</ul>
+<p>Backups:</p>
+<ul>
+<li>If encrypted infrastructure backups are enabled for the environment, deleted data may remain in backup copies for a limited period before automatic removal.</li>
+<li>Backup retention is typically up to <strong>7 days</strong>, depending on the infrastructure configuration.</li>
+</ul>
+<p>Account deletion requests are usually processed immediately or within a reasonable operational period.</p>
+<p>On successful deletion, Safi shows a deletion reference ID, signs you out, and returns you to the login screen.</p>
+<h2>12. Your Controls and Rights</h2>
+<p>Depending on applicable law, you may have the right to:</p>
+<ul>
+<li>Access your data</li>
+<li>Correct inaccurate data</li>
+<li>Request deletion of your account or data</li>
+<li>Object to certain processing</li>
+<li>Restrict certain processing</li>
+<li>Withdraw consent where processing is consent-based</li>
+<li>Request information about how your data is collected, used, shared, transferred, and retained</li>
+</ul>
+<p>You can manage some data directly in the app, including profile, vehicle, shift, trip, income, expense, and target-related information where editing or deletion features are available.</p>
+<p>For account deletion, use:</p>
+<p><strong>More → Profile → Delete account</strong></p>
+<p>For other privacy requests, contact us using the details below.</p>
+<h2>13. Complaints</h2>
+<p>If you have a concern about how Safi handles your personal data, please contact us first using the contact details below so we can review and respond to your request.</p>
+<p>If you are in Saudi Arabia and are not satisfied with our response, you may have the right to submit a complaint to the Saudi Data &amp; AI Authority, where applicable.</p>
+<p>If you are outside Saudi Arabia, you may have the right to submit a complaint to another competent data protection authority, where applicable.</p>
+<h2>14. Security</h2>
+<p>We use reasonable technical and organizational safeguards to protect personal data.</p>
+<p>These safeguards may include:</p>
+<ul>
+<li>Encrypted transport</li>
+<li>Access controls</li>
+<li>Authentication protections</li>
+<li>Database security rules and policies</li>
+<li>Operational monitoring</li>
+<li>Limited access to production data based on operational need</li>
+</ul>
+<p>No method of transmission or storage is 100% secure.</p>
+<p>You are responsible for keeping your account credentials secure and for protecting access to your device.</p>
+<h2>15. Children</h2>
+<p>Safi is intended for users who are legally able to work as drivers or manage driving-related income and expenses.</p>
+<p>Safi is not intended for children.</p>
+<p>Safi is not intended for users under 13 years old, or under the minimum age required by local law to use the app independently.</p>
+<p>If you believe a child submitted personal data to Safi, contact us so we can take appropriate action.</p>
+<h2>16. Changes to This Policy</h2>
+<p>We may update this Privacy Policy from time to time.</p>
+<p>When we update the policy, we will post the updated version with a new <strong>“Last updated”</strong> date.</p>
+<p>For material changes, we may provide additional notice in the app or through another appropriate method.</p>
+<h2>17. Contact</h2>
+<p>For privacy questions, rights requests, or complaints:</p>
+<ul>
+<li>Email: <strong>[add privacy contact email]</strong></li>
+<li>WhatsApp support: <strong>+966 55 600 8837</strong></li>
+<li>Controller/Entity: <strong>[add legal entity name]</strong></li>
+<li>Address: <strong>[add legal address if required]</strong></li>
+</ul>
+      </main>
+
+      <footer>
+        <span>Riyadh, Saudi Arabia</span>
+        <span><a href="mailto:anaportsHQ@gmail.com">anaportsHQ@gmail.com</a></span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
