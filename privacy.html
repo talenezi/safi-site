@@ -69,6 +69,13 @@
       padding: 18px 0;
     }
 
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .logo-mark {
       width: 100px;
       border-radius: 12px;
@@ -186,6 +193,7 @@
 
     @media (max-width: 760px) {
       .nav { align-items: flex-start; }
+      .nav-actions { justify-content: flex-start; }
       .policy table { min-width: 560px; }
     }
   </style>
@@ -198,7 +206,10 @@
         <a class="logo-mark" href="/" aria-label="Safi home">
           <img src="./assets/LaunchImageWeb.png" alt="Safi logo" />
         </a>
-        <a class="btn" href="/">Back to home</a>
+        <div class="nav-actions">
+          <a class="btn" href="/">Back to home</a>
+          <a class="btn" href="/privacy-ar.html">العربية</a>
+        </div>
       </nav>
 
       <header class="hero">
